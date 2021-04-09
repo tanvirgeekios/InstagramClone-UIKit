@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -22,9 +23,32 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
     
     //MARK:- Actions
     @IBAction func uploadBTNClicked(_ sender: UIButton) {
+        uploadImageToStorage()
     }
     
     //MARK:- Functions
+    func uploadImageToStorage(){
+        let storage = Storage.storage()
+        let storageReferance = storage.reference()
+        let mediaFolder = storageReferance.child("Media")
+        let uuidString = UUID().uuidString
+        if let data = imageView.image?.jpegData(compressionQuality: 0.5){
+            let imageReference = mediaFolder.child("\(uuidString).jpg")
+            imageReference.putData(data, metadata: nil) { (metaData, error) in
+                if let error = error{
+                    self.showAlert(title: "Alert", message: error.localizedDescription)
+                }else{
+                    imageReference.downloadURL { (url, error) in
+                        if error == nil, let imageUrl = url{
+                            print(imageUrl)
+                            //put url to database
+                            self.showAlert(title: "Success", message: "Success uploading image")
+                        }
+                    }
+                }
+            }
+        }
+    }
     func imageAddGesture(){
         imageView.isUserInteractionEnabled = true
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
@@ -43,5 +67,11 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imageView.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
+    }
+    func showAlert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle:.alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
 }
