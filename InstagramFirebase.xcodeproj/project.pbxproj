@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DA3AA306CEAED6E1DF8B63E6 /* Pods_InstagramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3103F21D58E6BE965F965EE0 /* Pods_InstagramFirebase.framework */; };
+		EB11CE91262418B500580582 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11CE90262418B500580582 /* FeedTableViewCell.swift */; };
 		EB3683BB261EFD4D004931FE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3683BA261EFD4D004931FE /* FeedViewController.swift */; };
 		EB3683BE261EFD5F004931FE /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3683BD261EFD5F004931FE /* UploadViewController.swift */; };
 		EB3683C1261EFD6C004931FE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3683C0261EFD6C004931FE /* SettingsViewController.swift */; };
@@ -24,6 +25,7 @@
 		3103F21D58E6BE965F965EE0 /* Pods_InstagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5DF992825B4C3CABC261DCC /* Pods-InstagramFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebase.release.xcconfig"; path = "Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		EA0D11E16F5E993A72D2BEB2 /* Pods-InstagramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebase.debug.xcconfig"; path = "Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
+		EB11CE90262418B500580582 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		EB3683BA261EFD4D004931FE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EB3683BD261EFD5F004931FE /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		EB3683C0261EFD6C004931FE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				EB3683BA261EFD4D004931FE /* FeedViewController.swift */,
 				EB3683BD261EFD5F004931FE /* UploadViewController.swift */,
 				EB3683C0261EFD6C004931FE /* SettingsViewController.swift */,
+				EB11CE90262418B500580582 /* FeedTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			files = (
 				EB6F945B261171890070673D /* ViewController.swift in Sources */,
 				EB3683BE261EFD5F004931FE /* UploadViewController.swift in Sources */,
+				EB11CE91262418B500580582 /* FeedTableViewCell.swift in Sources */,
 				EB6F9457261171890070673D /* AppDelegate.swift in Sources */,
 				EB3683BB261EFD4D004931FE /* FeedViewController.swift in Sources */,
 				EB6F9459261171890070673D /* SceneDelegate.swift in Sources */,

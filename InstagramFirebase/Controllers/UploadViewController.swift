@@ -41,8 +41,26 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
                     imageReference.downloadURL { (url, error) in
                         if error == nil, let imageUrl = url{
                             print(imageUrl)
+                            
                             //put url to database
-                            self.showAlert(title: "Success", message: "Success uploading image")
+                            let firestoreDatabase = Firestore.firestore()
+                            var firestoreReference : DocumentReference? = nil
+                            
+                            
+                            let firestorePost = ["imageUrl":imageUrl.absoluteString,"postedBy":Auth.auth().currentUser!.email!,"postComment":self.commentText.text ?? "No comment","date":FieldValue.serverTimestamp(),"likes":0] as [String : Any]
+                            
+                            firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
+                                if let error = error{
+                                    self.showAlert(title: "Error", message:error.localizedDescription)
+                                }else{
+                                    self.imageView.image = UIImage(named:"select")
+                                    self.tabBarController?.selectedIndex = 0
+                                    self.commentText.text = ""
+                                    self.showAlert(title: "Success", message: "Success Saving Post")
+                                }
+                            })
+                            
+                            //self.showAlert(title: "Success", message: "Success uploading image")
                         }
                     }
                 }
@@ -53,6 +71,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
         imageView.isUserInteractionEnabled = true
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gestureRecogniser)
+    }
+    func showAlert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle:.alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func chooseImage(){
@@ -68,10 +92,5 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
         imageView.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
-    func showAlert(title:String, message:String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle:.alert)
-        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-    }
+    
 }
